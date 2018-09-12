@@ -14,7 +14,11 @@ class YourBotArmy extends React.Component {
           <div className="row bot-army-row">
             Your Bot Army
             {this.props.botArmy.map( robot => {
-              return <BotCard handleClick={this.props.handleClick} robot={robot} /> } ) }
+              return (
+                <BotCard
+                key={robot.id}
+                handleClick={this.props.handleClick}
+                robot={robot} /> ) } ) }
           </div>
         </div>
       </div>

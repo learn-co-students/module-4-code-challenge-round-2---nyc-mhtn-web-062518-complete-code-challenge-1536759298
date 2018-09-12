@@ -15,7 +15,8 @@ class BotsPage extends React.Component {
 
   }
 
-
+//this is a super weird method. Definitely not the best way to do it, but this is what I got. If the robot is NOT in state.botArmy, then push it into an array and set that array = to YourBotArmy
+//To remove the robot, if it IS in the array find its index and remove it from robot array that way
 
   handleClick = (robot) => {
     let robotArray = this.state.botArmy;

@@ -5,6 +5,15 @@ class BotCollection extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      clicked: false
+    }
+
+  }
+
+//this does nothing right now. My idea was to load a spec card component when clicked is true but ran out of time
+  specLoader = () => {
+    this.setState({clicked: !this.state.clicked})
   }
 
 
@@ -17,7 +26,7 @@ class BotCollection extends React.Component {
             return <BotCard
               key={robot.id}
               robot={robot}
-              handleClick={this.props.handleClick} /> }
+              handleClick={this.state.clicked ? this.specLoader : this.props.handleClick} /> }
           )}
     		</div>
   	  </div>
