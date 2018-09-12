@@ -17,14 +17,14 @@ class BotsPage extends React.Component {
     fetch(url).then(res => res.json()).then(bots => this.setState({bots}))
   }
 
-  displayBotSpecs = (bot) => {
+  displayBotSpecs = bot => {
     this.setState({
       mode: null,
       selectedBot: bot
     })
   }
 
-  enlistBot = (bot) => {
+  enlistBot = bot => {
     this.setState({
       botArmy: [...this.state.botArmy, bot]
     })
@@ -46,23 +46,15 @@ class BotsPage extends React.Component {
   }
 
   render() {
-    if (this.state.mode === 'displayBots') {
-      return (
-        <div>
-          <YourBotArmy botArmy={this.state.botArmy} />
-          <BotCollection bots={this.filterBots()} displayBotSpecs={this.displayBotSpecs} handleIputChange={this.handleIputChange} input={this.state.input} />
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <YourBotArmy botArmy={this.state.botArmy} />
-          <BotSpecs bot={this.state.selectedBot} enlistBot={this.enlistBot} showAllBots={this.showAllBots} />
-          <BotCollection bots={this.filterBots()} displayBotSpecs={this.displayBotSpecs} handleIputChange={this.handleIputChange} input={this.state.input} />
-        </div>
-      )
-    }
+    return (
+      <div>
+        <YourBotArmy botArmy={this.state.botArmy} />
+        {this.state.mode === 'displayBots' ? null : <BotSpecs bot={this.state.selectedBot} enlistBot={this.enlistBot} showAllBots={this.showAllBots} />}
+        <BotCollection bots={this.filterBots()} displayBotSpecs={this.displayBotSpecs} handleIputChange={this.handleIputChange} input={this.state.input} />
+      </div>
+    )
   }
 }
+
 
 export default BotsPage;
