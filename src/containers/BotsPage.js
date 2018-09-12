@@ -20,8 +20,13 @@ class BotsPage extends React.Component {
 
   handleClick = (props) => {
     console.log('this bot is ', props)
-    this.setState({botArmy: [...this.state.botArmy, props]}, () => console.log('bot army state',this.state.botArmy))
+    if(this.state.botArmy.includes(props)){
+      //dont add the same bot twice
+    } else {
+      this.setState({botArmy: [...this.state.botArmy, props]}, () => console.log('bot army state',this.state.botArmy))
+    }
   }
+
 
   render() {
     return (
