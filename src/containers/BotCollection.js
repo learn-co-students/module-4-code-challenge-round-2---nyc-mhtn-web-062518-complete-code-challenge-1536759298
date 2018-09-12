@@ -15,6 +15,13 @@ class BotCollection extends React.Component {
     return this.props.bots.map(bot => <BotCard key={bot.id} bot={bot} handleClick={this.props.handleClick} />)
   }
 
+  // handleClick = (bot) => {
+  //   // console.log('hello')
+  //   this.setState({
+  //     myBots: [...this.state.myBots, bot]
+  //   })
+  // }
+
 
   render(){
     console.log('BotCollection props are: ', this.props)

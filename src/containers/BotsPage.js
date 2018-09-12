@@ -20,11 +20,13 @@ class BotsPage extends React.Component {
     .then(botData => this.setState({bots: botData}))
   }
 
+
+//on click, i am trying to get myBots to display in my YourBotArmy component
   handleClick = (bot) => {
-    console.log('hello')
-    // this.setState({
-    //   myBots: [...this.state.myBots, bot]
-    // })
+    // console.log('hello')
+    this.setState({
+      myBots: [...this.state.myBots, bot]
+    })
   }
 
   render() {
