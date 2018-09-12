@@ -46,7 +46,6 @@ class BotsPage extends React.Component {
   }
 
   render() {
-    // console.log("BotsPage:", this.state);
     if (this.state.mode === 'displayBots') {
       return (
         <div>

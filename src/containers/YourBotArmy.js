@@ -5,13 +5,9 @@ class YourBotArmy extends React.Component {
   constructor(props) {
     super(props)
   }
-  //your bot army code here...
 
   render(){
-
     let botArmyArray = this.props.botArmy.map(bot => <BotCard bot={bot} key={bot.id} />)
-
-  console.log("YourBotArmy:", this.props);
 
     return (
       <div className="ui segment inverted olive bot-army">
@@ -21,9 +17,8 @@ class YourBotArmy extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
-
-};
+}
 
 export default YourBotArmy;

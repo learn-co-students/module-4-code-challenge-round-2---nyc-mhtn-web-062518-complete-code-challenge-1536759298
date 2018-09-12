@@ -2,8 +2,6 @@ import React from "react";
 
 const BotCard = props => {
 
-// console.log("BotCard:", props);
-
   const { bot } = props;
 
   let botType;
