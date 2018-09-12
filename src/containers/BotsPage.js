@@ -18,6 +18,7 @@ class BotsPage extends React.Component {
   }
 
   displayBotSpecs = bot => {
+    // debugger;
     this.setState({
       mode: null,
       selectedBot: bot
@@ -25,10 +26,22 @@ class BotsPage extends React.Component {
   }
 
   enlistBot = bot => {
+    if (!this.state.botArmy.includes(bot)) {
+      this.setState({
+        botArmy: [...this.state.botArmy, bot]
+      })
+    }
+  }
+
+  unenlistBot = bot => {
+    let armyFilter = this.state.botArmy.filter(armyBot => {
+      return armyBot.name !== bot.name
+    })
     this.setState({
-      botArmy: [...this.state.botArmy, bot]
+    botArmy: armyFilter
     })
   }
+
 
   showAllBots = () => {
     this.setState({
@@ -48,9 +61,9 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
-        <YourBotArmy botArmy={this.state.botArmy} />
+        <YourBotArmy botArmy={this.state.botArmy} unenlistBot={this.unenlistBot}/>
         {this.state.mode === 'displayBots' ? null : <BotSpecs bot={this.state.selectedBot} enlistBot={this.enlistBot} showAllBots={this.showAllBots} />}
-        <BotCollection bots={this.filterBots()} displayBotSpecs={this.displayBotSpecs} handleIputChange={this.handleIputChange} input={this.state.input} />
+        {this.state.mode !== 'displayBots' ? null : <BotCollection bots={this.filterBots()} displayBotSpecs={this.displayBotSpecs} handleIputChange={this.handleIputChange} input={this.state.input} />}
       </div>
     )
   }
