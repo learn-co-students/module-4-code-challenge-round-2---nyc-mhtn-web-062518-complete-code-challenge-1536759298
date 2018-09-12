@@ -2,17 +2,19 @@ import React from "react";
 import BotCard from "../components/BotCard";
 
 class YourBotArmy extends React.Component {
-  constructor(props) {
-    super(props)
+  // constructor(props) {
+  //   super(props)
+  //
+  //   this.state = {
+  //     enlistedOrNot: false
+  //   }
+  // }
 
-    this.state = {
-      enlistedOrNot: false
-    }
-  }
+  // handleClickedBot = event => {
+  //   // console.log(event.target);
+  // }
 
-  handleClickedBot = event => {
-    // console.log(event.target);
-  }
+  // I am adding local state here, but I think that it might make more sense to have this in the BotsPage component where the rest of my state is 
 
   render(){
     // console.log(this.props.enlistedBots);

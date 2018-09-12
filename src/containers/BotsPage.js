@@ -24,7 +24,11 @@ class BotsPage extends React.Component {
   }
 
   handleClick = (bot) => {
-    // console.log(event.target);
+    // I need some sort of conditional rendering happening inside of this method that says if a bot card has been clicked on, then render it to
+    // the army component and if so, then do not allow it to be added again.
+    // I also need some other form of logic that will make the bot disappear from the army if it is clicked on after it has been enlisted
+    // In order to accomplish this task, I am thinking of having an enlistedOrNot key in the state object that is set to false and then use conditional
+    // rendering to make the bot disappear when clicked on 
     this.setState({
       enlisted: [
         ...this.state.enlisted,
