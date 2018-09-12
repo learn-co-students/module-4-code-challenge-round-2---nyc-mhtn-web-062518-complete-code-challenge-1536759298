@@ -1,37 +1,60 @@
 import React from "react";
 import YourBotArmy from './YourBotArmy.js'
 import BotCollection from './BotCollection.js'
+import BotSpecs from '../components/BotSpecs.js'
 
 class BotsPage extends React.Component {
   state = {
     bots: [],
-    botArmy: []
+    botArmy: [],
+    selectedBot: null,
+    mode: 'displayBots'
   }
-  //start here with your code for step one
 
+  componentDidMount() {
+    let url = 'https://bot-battler-api.herokuapp.com/api/v1/bots'
+    fetch(url).then(res => res.json()).then(bots => this.setState({bots}))
+  }
 
-componentDidMount() {
-  let url = 'https://bot-battler-api.herokuapp.com/api/v1/bots'
-  fetch(url).then(res => res.json()).then(bots => this.setState({bots}))
-}
+  displayBotSpecs = (bot) => {
+    this.setState({
+      mode: null,
+      selectedBot: bot
+    })
+  }
 
   enlistBot = (bot) => {
-    console.log(bot)
     this.setState({
       botArmy: [...this.state.botArmy, bot]
     })
   }
 
-  render() {
-    // console.log("BotsPage:", this.state);
-    return (
-      <div>
-        <YourBotArmy botArmy={this.state.botArmy} />
-        <BotCollection bots={this.state.bots} enlistBot={this.enlistBot}/>
-      </div>
-    );
+  showAllBots = () => {
+    this.setState({
+      mode: 'displayBots',
+      selectedBot: null
+    }, () => console.log("BotsPage:", this.state))
   }
 
+  render() {
+    // console.log("BotsPage:", this.state);
+    if (this.state.mode === 'displayBots') {
+      return (
+        <div>
+          <YourBotArmy botArmy={this.state.botArmy} />
+          <BotCollection bots={this.state.bots} displayBotSpecs={this.displayBotSpecs} />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <YourBotArmy botArmy={this.state.botArmy} />
+          <BotSpecs bot={this.state.selectedBot} enlistBot={this.enlistBot} showAllBots={this.showAllBots} />
+          <BotCollection bots={this.state.bots} displayBotSpecs={this.displayBotSpecs} />
+        </div>
+      )
+    }
+  }
 }
 
 export default BotsPage;

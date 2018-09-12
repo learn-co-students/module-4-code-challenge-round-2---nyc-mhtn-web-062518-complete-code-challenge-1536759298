@@ -7,15 +7,15 @@ class BotCollection extends React.Component {
   }
 
   render(){
-    let botsArray = this.props.bots.map(bot => <BotCard bot={bot} key={bot.id} enlistBot={this.props.enlistBot}/>)
+    let botsArray = this.props.bots.map(bot => <BotCard bot={bot} key={bot.id} displayBotSpecs={this.props.displayBotSpecs}/>)
     // console.log("BotCollection:", this.props);
-  	return (
-  	  <div className="ui four column grid">
-    		<div className="row">
-    		  {botsArray}
-    		</div>
-  	  </div>
-  	);
+    return (
+      <div className="ui four column grid">
+        <div className="row">
+          {botsArray}
+        </div>
+      </div>
+    );
   }
 
 };
