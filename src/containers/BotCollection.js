@@ -4,8 +4,8 @@ import BotCard from "../components/BotCard";
 class BotCollection extends React.Component {
   constructor(props) {
     super(props)
-  }
 
+  }
 
 
   render(){
