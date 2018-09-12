@@ -8,7 +8,8 @@ class BotsPage extends React.Component {
     bots: [],
     botArmy: [],
     selectedBot: null,
-    mode: 'displayBots'
+    mode: 'displayBots',
+    input: ""
   }
 
   componentDidMount() {
@@ -33,7 +34,15 @@ class BotsPage extends React.Component {
     this.setState({
       mode: 'displayBots',
       selectedBot: null
-    }, () => console.log("BotsPage:", this.state))
+    })
+  }
+
+  handleIputChange = event => {
+    this.setState({input: event.target.value})
+  }
+
+  filterBots = () => {
+    return this.state.bots.filter(bot => bot.name.toLowerCase().includes(this.state.input))
   }
 
   render() {
@@ -42,7 +51,7 @@ class BotsPage extends React.Component {
       return (
         <div>
           <YourBotArmy botArmy={this.state.botArmy} />
-          <BotCollection bots={this.state.bots} displayBotSpecs={this.displayBotSpecs} />
+          <BotCollection bots={this.filterBots()} displayBotSpecs={this.displayBotSpecs} handleIputChange={this.handleIputChange} input={this.state.input} />
         </div>
       )
     } else {
@@ -50,7 +59,7 @@ class BotsPage extends React.Component {
         <div>
           <YourBotArmy botArmy={this.state.botArmy} />
           <BotSpecs bot={this.state.selectedBot} enlistBot={this.enlistBot} showAllBots={this.showAllBots} />
-          <BotCollection bots={this.state.bots} displayBotSpecs={this.displayBotSpecs} />
+          <BotCollection bots={this.filterBots()} displayBotSpecs={this.displayBotSpecs} handleIputChange={this.handleIputChange} input={this.state.input} />
         </div>
       )
     }
